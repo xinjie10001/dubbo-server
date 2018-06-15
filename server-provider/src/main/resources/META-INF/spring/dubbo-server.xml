@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+
+    <!--提供方信息-->
+    <dubbo:application name="dubbo-server" owner="xinjie"/>
+
+    <!--注册中心-->
+    <dubbo:registry address="zookeeper://39.108.184.140:2181" file="/Users/wangxinjie/IdeaProjects/dubbo/dubbo-server"/>
+
+    <dubbo:protocol name="dubbo" port="20880"/>
+    <dubbo:protocol name="hessian" port="8888"/>
+
+    <dubbo:service interface="com.mmgg.UserService" ref="userService" protocol="hessian,dubbo" />
+    <dubbo:service interface="com.mmgg.DemoService" ref="demoService" protocol="dubbo" />
+
+
+    <bean id="userService" class="com.mmgg.UserServiceImpl"/>
+    <bean id="demoService" class="com.mmgg.DemoServiceIml"/>
+
+
+</beans>
